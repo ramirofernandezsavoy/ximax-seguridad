@@ -15,8 +15,9 @@ export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
-    <div className="bg-white">
+    <div className="bg-gradient-to-t from-white to-indigo-200">
       <header className="absolute inset-x-0 top-0 z-50">
+      
         <nav className="flex items-center justify-between p-4 lg:px-8" aria-label="Global">
           <div className="flex lg:flex-1">
             <div className="-m-1.5 p-1.5">              
@@ -104,7 +105,7 @@ export default function Example() {
               </Link>
             </div>
           </div>
-        </div>        
+        </div>                
       </div>
     </div>
   )
