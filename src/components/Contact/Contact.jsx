@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useState } from 'react'
 import { Switch } from '@headlessui/react'
+import emailjs from '@emailjs/browser';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -8,6 +9,19 @@ function classNames(...classes) {
 
 export default function Example() {
   const [agreed, setAgreed] = useState(false)
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs.sendForm('service_k1tk6v9', 'template_ucywcs9', form.current, 'ZvDniMpAbNCZDK8kh')
+      .then((result) => {
+          console.log(result.text);
+          form.current.reset()
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
+  
 
   return (
     <div className="isolate bg-gradient-to-t from-white to-blue-200 px-6 py-24 sm:py-32 lg:px-8" name="contact">
@@ -22,7 +36,7 @@ export default function Example() {
           Comunicate con nosotros via mail, o envianos un whatsapp clickeando en el ícono.
         </p>
       </div>
-      <form action="#" method="POST" className="mx-auto mt-12 max-w-xl sm:mt-10">
+      <form ref={form} onSubmit={sendEmail} action="#" method="POST" className="mx-auto mt-12 max-w-xl sm:mt-10">
         <div className="grid grid-cols-1 gap-x-8 gap-y-4 sm:grid-cols-2">
           <div>
             <label htmlFor="first-name" className="block text-sm font-semibold leading-6 text-gray-900">
@@ -131,7 +145,12 @@ export default function Example() {
             Hablemos!
           </button>
         </div>
-      </form>      
+      </form>     
     </div>
   )
 }
+
+
+
+
+
