@@ -17,6 +17,7 @@ const IndexPage = () => {
           <Wplogo/>
           <Toplogo/>
           <Hero/>
+          <Hero/>
           <Servicios/>
           <About/>
           <Logos/>          
